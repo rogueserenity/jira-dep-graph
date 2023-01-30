@@ -1,3 +1,9 @@
+done_statuses = [
+    "Done",
+    "Ready for Development"
+]
+
+
 class Graph:
     def __init__(self, jira, epic):
         issue = jira.issue(epic)
@@ -37,7 +43,7 @@ class Graph:
         self.include_done = False
         done = []
         for node in self.nodes.items():
-            if node[1] == 'Done':
+            if node[1] in done_statuses:
                 done.append(node[0])
 
         for d in done:
