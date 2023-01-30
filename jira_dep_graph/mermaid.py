@@ -29,12 +29,12 @@ def create_key(include_done: bool) -> str:
         BB[In Progress]
         CC[Code Review]
         DD[Test]
-    '''
+'''
 
     if include_done:
-        key += '    EE[Done]\n'
+        key += '        EE[Done]\n'
     else:
-        key += '    EE[Done are removed]\n'
+        key += '        EE[Done are removed]\n'
 
     key += '''
         class AA TODO
@@ -43,7 +43,7 @@ def create_key(include_done: bool) -> str:
         class DD TEST
         class EE DONE
     end
-    '''
+'''
     return key
 
 
@@ -51,16 +51,20 @@ def create_status_line(key: str, status: str) -> str:
     status_class = {
         'To Do': 'TODO',
         'Discovery': 'INPR',
+        'Designing': 'INPR',
         'Analysis': 'INPR',
         'In Development': 'INPR',
         'In Progress': 'INPR',
         'Acceptance': 'CREV',
         'Code Review': 'CREV',
+        'Validation': 'CREV',
+        'UX Review': 'CREV',
         'Ready for Test': 'TEST',
         'Local Test': 'TEST',
         'Ready for Merge': 'TEST',
         'Staging Test': 'TEST',
         'Deploy to Production': 'TEST',
+        'Ready for Development': 'DONE',
         'Done': 'DONE',
     }.get(status)
 
