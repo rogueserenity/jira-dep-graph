@@ -29,3 +29,19 @@ options:
 If you do not pass an epic at the command line, the utility will prompt you for it.
 
 The first time the script is run, it will require a JIRA username and API Token. These are stored in `~/.jira-creds`. To rotate the token, simply delete the file and re-run the script.
+
+
+## Wrapper Script
+
+Included in the root of this repository is a wrapper script that will execute the python script and then run the mermaid generation from the created `mmd` file. To execute the script:
+
+```
+$ ./generate.sh -h
+Usage ./generate.sh
+        -d              include completed issues
+        -e              the epic (required)
+        -f              image format [svg|png|pdf] default: png
+        -h              this usage message
+```
+
+This requires that the [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) be installed and `mmdc` be in your path.
