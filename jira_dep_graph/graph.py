@@ -28,6 +28,12 @@ class Graph:
 
         self.nodes.update({issue.key: str(issue.get_field("status"))})
 
+        subtasks = issue.get_field("subtasks")
+        if len(subtasks) > 0:
+            for st in subtasks:
+                dependency = (issue.key, st.key)
+                self.dependencies.append(dependency)
+
         links = issue.get_field("issuelinks")
         for link in links:
             if str(link.type) == "Blocks":
