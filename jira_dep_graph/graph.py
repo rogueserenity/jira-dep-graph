@@ -1,14 +1,11 @@
-done_statuses = [
-    "Done",
-    "Ready for Development"
-]
+done_statuses = ["Done", "Ready for Development"]
 
 
 class Graph:
     def __init__(self, jira, epic):
         issue = jira.issue(epic)
-        issue_type = str(issue.get_field('issuetype'))
-        assert issue_type == 'Epic', f'{epic} is not an Epic!'
+        issue_type = str(issue.get_field("issuetype"))
+        assert issue_type == "Epic", f"{epic} is not an Epic!"
 
         self.jira = jira
         self.epic = issue
@@ -16,7 +13,7 @@ class Graph:
         self.nodes = {}
         self.dependencies = []
 
-        children = jira.search_issues(f'linkedIssue = {epic}')
+        children = jira.search_issues(f"linkedIssue = {epic}")
         for child in children:
             if child.key == epic:
                 continue
@@ -26,15 +23,15 @@ class Graph:
         if issue.key in self.nodes:
             return
 
-        if not hasattr(issue, 'issuelinks'):
+        if not hasattr(issue, "issuelinks"):
             issue = self.jira.issue(issue.key)
 
-        self.nodes.update({issue.key: str(issue.get_field('status'))})
+        self.nodes.update({issue.key: str(issue.get_field("status"))})
 
-        links = issue.get_field('issuelinks')
+        links = issue.get_field("issuelinks")
         for link in links:
-            if str(link.type) == 'Blocks':
-                if hasattr(link, 'inwardIssue'):
+            if str(link.type) == "Blocks":
+                if hasattr(link, "inwardIssue"):
                     dependency = (issue.key, link.inwardIssue.key)
                     self.dependencies.append(dependency)
                     self.__build(link.inwardIssue)
