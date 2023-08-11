@@ -26,13 +26,15 @@ class Graph:
         if not hasattr(issue, "issuelinks"):
             issue = self.jira.issue(issue.key)
 
-        self.nodes.update({issue.key: str(issue.get_field("status"))})
+        status = str(issue.get_field("status"))
+        self.nodes.update({issue.key: status})
 
         subtasks = issue.get_field("subtasks")
         if len(subtasks) > 0:
             for st in subtasks:
                 dependency = (issue.key, st.key)
                 self.dependencies.append(dependency)
+                self.__build(st)
 
         links = issue.get_field("issuelinks")
         for link in links:
@@ -44,13 +46,10 @@ class Graph:
 
     def remove_done(self):
         self.include_done = False
-        done = []
-        for node in self.nodes.items():
-            if node[1] in done_statuses:
-                done.append(node[0])
+        nodes = {
+            key: val for key, val in self.nodes.items() if val not in done_statuses
+        }
+        deps = [x for x in self.dependencies if x[0] in nodes and x[1] in nodes]
 
-        for d in done:
-            del self.nodes[d]
-            for dep in self.dependencies:
-                if dep[0] == d or dep[1] == d:
-                    self.dependencies.remove(dep)
+        self.nodes = nodes
+        self.dependencies = deps
