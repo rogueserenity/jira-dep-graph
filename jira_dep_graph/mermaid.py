@@ -49,25 +49,28 @@ def create_key(include_done: bool) -> str:
 
 def create_status_line(key: str, status: str) -> str:
     status_class = {
-        "To Do": "TODO",
-        "Discovery": "INPR",
-        "Designing": "INPR",
-        "Analysis": "INPR",
-        "In Development": "INPR",
-        "In Progress": "INPR",
-        "Acceptance": "CREV",
-        "Code Review": "CREV",
-        "Validation": "CREV",
-        "UX Review": "CREV",
-        "Ready for Test": "TEST",
-        "Local Test": "TEST",
-        "Ready for Merge": "TEST",
-        "Staging Test": "TEST",
-        "Deploy to Production": "TEST",
-        "Ready for Development": "DONE",
-        "Done": "DONE",
-    }.get(status)
+        "TO DO": "TODO",
+        "DISCOVERY": "INPR",
+        "DESIGNING": "INPR",
+        "ANALYSIS": "INPR",
+        "IN DEVELOPMENT": "INPR",
+        "IN PROGRESS": "INPR",
+        "ACCEPTANCE": "CREV",
+        "CODE REVIEW": "CREV",
+        "VALIDATION": "CREV",
+        "UX REVIEW": "CREV",
+        "READY FOR TEST": "TEST",
+        "LOCAL TEST": "TEST",
+        "READY FOR MERGE": "TEST",
+        "STAGING TEST": "TEST",
+        "DEPLOY TO PRODUCTION": "TEST",
+        "READY FOR PRODUCTION": "TEST",
+        "READY FOR DEVELOPMENT": "DONE",
+        "DONE": "DONE",
+    }.get(status.upper())
 
+    if status_class is None:
+        print(f"Status: {status} is not mapped!")
     return f"        class {key} {status_class}\n"
 
 
