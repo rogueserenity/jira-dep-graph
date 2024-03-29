@@ -49,6 +49,7 @@ def create_key(include_done: bool) -> str:
 
 def create_status_line(key: str, status: str) -> str:
     status_class = {
+        "BACKLOG": "TODO",
         "TO DO": "TODO",
         "DISCOVERY": "INPR",
         "DESIGNING": "INPR",
