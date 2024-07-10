@@ -61,6 +61,7 @@ def create_status_line(key: str, status: str) -> str:
         "CODE REVIEW": "CREV",
         "VALIDATION": "CREV",
         "UX REVIEW": "CREV",
+        "IN LOCAL TEST": "TEST",
         "READY FOR LOCAL TESTING": "TEST",
         "READY FOR TEST": "TEST",
         "LOCAL TEST": "TEST",
