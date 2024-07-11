@@ -67,6 +67,7 @@ def create_status_line(key: str, status: str) -> str:
         "LOCAL TEST": "TEST",
         "READY FOR MERGE": "TEST",
         "STAGING TEST": "TEST",
+        "IN STAGING TEST": "TEST",
         "DEPLOY TO PRODUCTION": "TEST",
         "READY FOR PRODUCTION": "TEST",
         "READY FOR DEVELOPMENT": "DONE",
