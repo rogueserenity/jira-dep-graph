@@ -46,4 +46,4 @@ if [ "${FORMAT}" = "" ]; then
 fi
 
 poetry run generate -e "${EPIC}" -o "${EPIC}.mmd" ${DONE:+"-d"} &&\
-  mmdc -i "${EPIC}.mmd" -o "${EPIC}.${FORMAT}"
+  mmdc -w 1920 -H 1080 -i "${EPIC}.mmd" -o "${EPIC}.${FORMAT}"
