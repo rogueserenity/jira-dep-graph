@@ -3,7 +3,7 @@ from .graph import Graph
 graph_type = "flowchart LR"
 
 status_class_def = """
-    classDef TODO fill:#FE4040
+    classDef TODO fill:#FE4040,color:#FFF
     classDef INPR fill:#FF8738
     classDef CREV fill:#F2F44B
     classDef TEST fill:#008800,color:#FFF
