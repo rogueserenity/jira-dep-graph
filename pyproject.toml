@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Jay Burgess <jason.burgess@jumpcloud.com>"]
 readme = "README.md"
-packages = [{include = "jira_dep_graph"}]
+packages = [{include = "jira_dep_graph", format = "sdist"}]
 
 [tool.poetry.dependencies]
 python = ">=3.11"
