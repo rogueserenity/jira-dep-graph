@@ -132,3 +132,6 @@ dmypy.json
 *.mmd
 *.svg
 *.png
+
+# custom scripts
+custom_*.sh
