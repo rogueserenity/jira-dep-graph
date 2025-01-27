@@ -44,4 +44,9 @@ Usage ./generate.sh
         -h              this usage message
 ```
 
-This requires that the [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) be installed and `mmdc` be in your path.
+This requires that the [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) be installed and `mmdc` be in your path. You will most likely want `nvm` in your path as well,
+and try running:
+
+        nvm use
+
+before running the wrapper script to ensure you have the proper version of `node.js` installed.
