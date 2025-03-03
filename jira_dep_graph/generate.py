@@ -8,20 +8,25 @@ from .graph import Graph
 from .mermaid import create_graph
 
 
-def get_creds() -> tuple[str, str]:
-    config_path = os.path.expanduser("~/.jira-creds")
+def get_credentials() -> dict:
+    config_path = os.path.expanduser("~/.jira-dep-graph")
     if os.path.isfile(config_path):
         with open(config_path, "r") as config:
-            json_creds = json.load(config)
-            return (json_creds[0], json_creds[1])
+            json_credentials = json.load(config)
+            return json_credentials
     else:
+        endpoint = input("Jira Endpoint: ")
         user = input("Jira Email: ")
         api_token = getpass("Jira API Token: ")
-        creds = (user, api_token)
-        json_creds = json.dumps(creds)
+        credentials = {
+            "endpoint": endpoint,
+            "user": user,
+            "api_token": api_token,
+        }
+        json_credentials = json.dumps(credentials)
         with open(config_path, "w") as config:
-            config.write(json_creds)
-        return creds
+            config.write(json_credentials)
+        return credentials
 
 
 def parse_args() -> dict:
@@ -54,9 +59,10 @@ def parse_args() -> dict:
 
 
 def generate():
+    credentials = get_credentials()
     jira = JIRA(
-        server="https://jumpcloud.atlassian.net",
-        basic_auth=get_creds(),
+        server=credentials["endpoint"],
+        basic_auth=(credentials["user"], credentials["api_token"]),
     )
 
     args = parse_args()
