@@ -13,7 +13,7 @@ class Graph:
         self.nodes = {}
         self.dependencies = []
 
-        children = jira.search_issues(f"linkedIssue = {epic}")
+        children = jira.search_issues(f"parent = {epic}")
         for child in children:
             if child.key == epic:
                 continue
